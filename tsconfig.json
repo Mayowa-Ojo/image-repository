@@ -1,0 +1,31 @@
+{
+   "compilerOptions": {
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "target": "es6",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "outDir": "dist",
+      "allowJs": true,
+      "resolveJsonModule": true,
+      "noImplicitThis": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noImplicitAny": false,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "baseUrl": "./",
+      "paths": {
+         "~routes/*": ["src/routes/*"],
+         "~config/*": ["src/config/*"],
+         "~declarations/*": ["src/declarations/*"],
+         "~middleware/*": ["src/middleware/*"]
+      },
+      "types": ["jest", "node"]
+   },
+   "lib": [
+      "es2015"
+   ],
+   "include": ["./src/**/*"],
+   "exclude": ["node_modules", "./__tests__/*"]
+}

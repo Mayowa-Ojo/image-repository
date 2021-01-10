@@ -1,0 +1,11 @@
+ 
+node_modules/
+dist/
+build/
+.DS_Store
+*.log
+*.env
+*.env.production
+*.env.development
+_notes.md
+*.http
