@@ -1,8 +1,11 @@
-import app from "./app";
+import "reflect-metadata";
 
-import { config } from "./config/env.config";
+import app from "./app";
+import connectDB from "~config/db.config";
+import { config } from "~config/env.config";
 
 void async function() {
+   await connectDB();
 
    app.listen(config.PORT);
 
