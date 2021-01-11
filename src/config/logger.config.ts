@@ -1,39 +1,33 @@
-import { Request, Response, NextFunction } from "express";
-import { transports, format } from "winston";
+import { transports, createLogger, format } from "winston";
 
-export const logger = (winstonInstance: any): any => {
-   winstonInstance.configure({
-      level: "info",
-      transports: [
-         // - Write to all logs with specified level to console.
-         new transports.Console({
-            format: format.combine(
-               format.colorize(),
-               format.simple()
-            )
-         })
-      ]
-   });
+import { config } from "~config/env.config";
 
-   return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const fileOptions: transports.FileTransportOptions = {
+   level: "info",
+   filename: config.LOG_FILE,
+   handleExceptions: true,
+   maxsize: 5242880,
+   maxFiles: 5
+}
 
-      const start = new Date().getTime();
+const consoleOptions: transports.ConsoleTransportOptions = {
+   level: "info",
+   handleExceptions: true,
+   format: format.combine(format.colorize(), format.simple())
+}
 
-      await next();
+const logger = createLogger({
+   transports: [
+      new transports.File(fileOptions),
+      new transports.Console(consoleOptions)
+   ],
+   exitOnError: false
+});
 
-      const ms = new Date().getTime() - start;
+export const stream = {
+   write: function(message: any) {
+      logger.info(message);
+   }
+}
 
-      let logLevel: string;
-      if (res.statusCode >= 500) {
-         logLevel = "error";
-      } else if (res.statusCode >= 400) {
-         logLevel = "warn";
-      } else {
-         logLevel = "info";
-      }
-
-      const msg = `${req.method} ${req.originalUrl} ${res.statusCode} ${ms}ms`;
-
-      winstonInstance.log(logLevel, msg);
-   };
-};
+export default logger;
