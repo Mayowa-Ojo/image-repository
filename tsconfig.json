@@ -19,7 +19,11 @@
          "~routes/*": ["src/routes/*"],
          "~config/*": ["src/config/*"],
          "~declarations/*": ["src/declarations/*"],
-         "~middleware/*": ["src/middleware/*"]
+         "~middleware/*": ["src/middleware/*"],
+         "~entity/*": ["src/database/entity/*"],
+         "~repository/*": ["src/database/repository/*"],
+         "~controllers/*": ["src/controllers/*"],
+         "~utils/*": ["src/utils/*"]
       },
       "types": ["jest", "node"]
    },
