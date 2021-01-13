@@ -15,7 +15,7 @@ const upload = multer({});
 authRouter.post("/login", authController.login);
 authRouter.post("/signup", authController.signup);
 
-imageRouter.post("/", authGuard, upload.array("images", 12), imageController.upload);
+imageRouter.post("/", authGuard, upload.array("images", 100), imageController.upload);
 imageRouter.patch("/:id", authGuard, imageController.editPermission);
 imageRouter.delete("/", authGuard, imageController.deleteMany);
 imageRouter.delete("/all", authGuard, imageController.deleteAll);
