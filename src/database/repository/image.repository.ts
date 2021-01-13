@@ -1,4 +1,4 @@
-import { getRepository, Repository, DeleteResult, UpdateResult } from "typeorm";
+import { getRepository, Repository, DeleteResult, UpdateResult, InsertResult } from "typeorm";
 
 import Image from "~entity/image.entity";
 import { IBaseEntity, IRepositoryPayload } from "~declarations/index";
@@ -22,7 +22,7 @@ export const create = async ({ data }: IRepositoryPayload): Promise<Image> => {
    }
 }
 
-export const insertMany = async ({ data }: IRepositoryPayload): Promise<Image[]> => {
+export const insertMany = async ({ data }: IRepositoryPayload): Promise<InsertResult> => {
    try {
       repository = getRepository(Image);
 
@@ -30,9 +30,9 @@ export const insertMany = async ({ data }: IRepositoryPayload): Promise<Image[]>
 
       imageInstances.forEach((instance: IBaseEntity, idx: number) => populateEntityFields(instance, data[idx]));
 
-      const images = await repository.insert(imageInstances);
+      const result = await repository.insert(imageInstances);
 
-      return images as unknown as Image[];
+      return result;
    } catch (err) {
       throw new Error(err.message);
    }
