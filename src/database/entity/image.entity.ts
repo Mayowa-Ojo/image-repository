@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne, JoinColumn, UpdateDateColumn } from "typeorm";
+import { Permissions } from "~declarations/enums";
 import User from "./user.entity";
 
 @Entity("images")
@@ -17,6 +18,14 @@ class Image {
       type: "varchar"
    })
    key: string;
+
+   @Column({
+      name: "permission",
+      type: "enum",
+      enum: Permissions,
+      default: Permissions.PUBLIC
+   })
+   permission: Permissions;
 
    @CreateDateColumn({
       name: "created_at",
