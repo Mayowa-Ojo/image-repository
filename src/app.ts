@@ -5,7 +5,7 @@ import morgan from "morgan";
 
 import baseRouter from "~routes/index";
 import { stream } from "~config/logger.config";
-import { notFoundError, errorHandler } from "~middleware/error.middleware";
+import { notFoundError, errorHandler } from "~middleware/index";
 
 const app = express();
 
