@@ -12,6 +12,7 @@ declare interface IEnvConfig {
    LOG_FILE: string
    DB_URI: string
    DB_NAME: string
+   DB_TEST: string
    DB_USER: string
    DB_PASSWORD: string
    JWT_SECRET: string
