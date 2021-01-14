@@ -15,6 +15,7 @@ export const config: IEnvConfig = {
    LOG_FILE: process.env.LOG_FILE || "server.log",
    DB_URI: process.env.DB_URI,
    DB_NAME: process.env.DB_NAME,
+   DB_TEST: process.env.DB_TEST,
    DB_USER: process.env.DB_USER,
    DB_PASSWORD: process.env.DB_PASSWORD,
    JWT_SECRET: process.env.JWT_SECRET,
