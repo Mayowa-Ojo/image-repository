@@ -34,7 +34,7 @@ export const authGuard = async (req: Request, res: Response, next: NextFunction)
    const error = new ResponseError;
 
    if(!req.headers["authorization"]) {
-      error.message = "user is not authorized";
+      error.message = "user is not authenticated";
       error.statusCode = codes.UNAUTHORIZED;
 
       next(error);
@@ -52,7 +52,8 @@ export const authGuard = async (req: Request, res: Response, next: NextFunction)
 
       next();
    } catch (err) {
-      error.message = err.message;
+      error.message = "authentication failed";
+      error.statusCode = codes.UNAUTHORIZED;
       next(error);
    }
 }
